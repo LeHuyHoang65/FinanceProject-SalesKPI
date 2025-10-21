@@ -5,9 +5,9 @@ Final Result here :
 
 # Table of Contents
 1.[Introduction](#1introduction)  
-2.Result  
-3.Tool & Dataset  
-4.Detailed Approach  
+2.[Result](2result)  
+3.[Tool & Dataset](3tool--dataset)  
+4.[Detailed Approach](4detail-approach)  
 
 ## 1.Introduction
 This project utilizes data that closely mirrors the financial data of real Vietnamese enterprises. The goal is to develop financial metrics for companies operating in the financial sector. From these metrics, we aim to create reports and dashboards that provide a comprehensive and detailed overview of the company's revenue and expenses on a monthly basis. Additionally, the project includes reports on the performance of the sales team.
