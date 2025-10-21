@@ -36,3 +36,6 @@ Dataset
 - [fact_kpi_asm_dataraw](https://drive.google.com/file/d/1n9iBAhF3a9Ogr8weSnlLa1KgbnLltR7V/view?usp=drive_link)
 
 # Detailed Approach
+The project is processed and analyzed according to the flow below
+<img width="940" height="465" alt="FLOW" src="https://github.com/user-attachments/assets/86313bde-273c-4ad4-af17-2e5c72e63431" />
+Processing this project requires combining various business knowledge areas. I will explain in more detail below⬇
