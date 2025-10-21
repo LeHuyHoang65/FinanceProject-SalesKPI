@@ -4,7 +4,7 @@ Please see this Coding file here :
 Final Result here :   
 
 # Table of Contents
-1.[Introduction](#introduction)  
+1.[Introduction](#1introduction)  
 2.Result  
 3.Tool & Dataset  
 4.Detailed Approach  
@@ -24,7 +24,7 @@ Detailed dashboards on overview , revenue and expenses
 Dashboards reporting the performance of the sales team
 <img width="1288" height="722" alt="asmt2" src="https://github.com/user-attachments/assets/875d9d3d-48cb-4b63-b9d3-2e941cfe4d44" />
 
-# Tool & Dataset
+# 3.Tool & Dataset
 Tool
 - PostgreSQL
 - Power BI
@@ -35,7 +35,7 @@ Dataset
 - [fact_txn_month_dataraw](https://drive.google.com/file/d/1THl6X7oTwsVH2iFgOt3J4O9LPkyxnXoy/view?usp=drive_link)
 - [fact_kpi_asm_dataraw](https://drive.google.com/file/d/1n9iBAhF3a9Ogr8weSnlLa1KgbnLltR7V/view?usp=drive_link)
 
-# Detailed Approach
+# 4.Detailed Approach
 The project is processed and analyzed according to the flow below
 <img width="940" height="465" alt="FLOW" src="https://github.com/user-attachments/assets/86313bde-273c-4ad4-af17-2e5c72e63431" />
 Processing this project requires combining various business knowledge areas. I will explain in more detail below⬇
