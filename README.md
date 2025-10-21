@@ -10,6 +10,6 @@ Final Result here :
 # 1.Introduction
 This project utilizes data that closely mirrors the financial data of real Vietnamese enterprises. The goal is to develop financial metrics for companies operating in the financial sector. From these metrics, we aim to create reports and dashboards that provide a comprehensive and detailed overview of the company's revenue and expenses on a monthly basis. Additionally, the project includes reports on the performance of the sales team.
 # 2.Result
-A summary dashboard reporting monthly results in Power BI
+A summary dashboard reporting monthly results in Power BI <br>
 <img width="1392" height="648" alt="image" src="https://github.com/user-attachments/assets/e1d72eea-74cd-400a-8fc6-e99b7618ad1d" />
 Detailed dashboards on overview , revenue and expenses
