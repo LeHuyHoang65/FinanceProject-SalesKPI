@@ -1,5 +1,5 @@
 # FinanceProject-SalesKPI
-DataSet Here: [Download](https://drive.google.com/drive/folders/142RTfUw6BbQylh7iGDiSwnQ2QGETCXvj?usp=sharing)  
+Dataset here: [Download](https://drive.google.com/drive/folders/142RTfUw6BbQylh7iGDiSwnQ2QGETCXvj?usp=sharing)  
 Please see this Coding file here :   
 Final Result here :   
 
@@ -28,8 +28,8 @@ Dashboards reporting the performance of the sales team
 Tool
 - PostgreSQL
 - Power BI
-- Excel
-__
+- Excel<br>
+
 Dataset
 - [fact_kpi_month_dataraw](https://drive.google.com/file/d/1wAIIPT49UP3bKDgwJdZHmA3WMeSUExLX/view?usp=drive_link)
 - [fact_txn_month_dataraw](https://drive.google.com/file/d/1THl6X7oTwsVH2iFgOt3J4O9LPkyxnXoy/view?usp=drive_link)
