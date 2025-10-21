@@ -28,7 +28,8 @@ Dashboards reporting the performance of the sales team
 Tool
 - PostgreSQL
 - Power BI
-- Excel__
+- Excel
+<br>
 Dataset
 - [fact_kpi_month_dataraw](https://drive.google.com/file/d/1wAIIPT49UP3bKDgwJdZHmA3WMeSUExLX/view?usp=drive_link)
 - [fact_txn_month_dataraw](https://drive.google.com/file/d/1THl6X7oTwsVH2iFgOt3J4O9LPkyxnXoy/view?usp=drive_link)
