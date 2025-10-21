@@ -4,9 +4,9 @@ Please see this Coding file here :
 Final Result here :   
 
 # Table of Contents
-1.Introduction  
+1.[Introduction](#introduction)  
 2.Result  
-3.Tool&Dataset  
+3.Tool & Dataset  
 4.Detailed Approach  
 
 # 1.Introduction
