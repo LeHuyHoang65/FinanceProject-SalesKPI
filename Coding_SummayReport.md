@@ -1,8 +1,8 @@
 # Detailed Coding
 ## Table of Contents
-1.[Metrics](#1metrics)  
-2.Calculate Report1  
-3.Calculate Summary Report  
+  1.[Metrics](#1metrics)  
+  2.Calculate Report1  
+  3.Calculate Summary Report  
 
 <p align="center">
   <img width="940" height="465" alt="FLOW" src="https://github.com/user-attachments/assets/570dde93-86e0-4569-8961-7afa44947eab" />
