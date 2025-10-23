@@ -1,6 +1,6 @@
 # Detailed Coding
 ## Table of Contents
-1.Metrics  
+1.[Metrics](#1metrics)  
 2.Calculate Report1  
 3.Calculate Summary Report  
 
