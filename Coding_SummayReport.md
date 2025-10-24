@@ -1,8 +1,8 @@
 # Detailed Coding
 ## Table of Contents
 1.[Metrics](#1metrics)  
-2.[Calculate Report1](#2Calculate-REPORT1)  
-3.Calculate Summary Report  
+2.[Calculate Report](#2Calculate-REPORT)  
+3.[Calculate Summary Report](#3Calculate-Summary-Report)  
 
 <p align="center">
   <img width="940" height="465" alt="FLOW" src="https://github.com/user-attachments/assets/570dde93-86e0-4569-8961-7afa44947eab" />
@@ -60,7 +60,7 @@ The Summary Report includes numerous metrics. Some of these are aggregate metric
 - hieu_suat_BQ: Average efficiency, calculated as:  
   `loi_nhuan_truoc_thue / so_luong_nhansu`
 
-# 2.Calculate REPORT1
+# 2.Calculate REPORT
 Below is a diagram illustrating the calculation process in step 1. 
 <p align="center">
 <img width="934" height="277" alt="report1" src="https://github.com/user-attachments/assets/7d3330d6-9ec8-454e-ac01-4cec23bad52e" />
@@ -344,3 +344,5 @@ from report ;
 | Nam Trung Bộ  | 54,408.780.960   | 53,184.939    | 1,325.958.386 | 2,789.252.822     | 270.150.876         | 44.164.241        | 3.188.264.670  | 5.715.311.356 | 222.914.654  | 554.295.559  | 22.308.118.789  |
 | Tây Nam Bộ    | 252.252.873.483  | 63,407.212    | 3,895.335.021 | 12,950.572.262    | 2,886.946.171       | 237.313.124       | 16.485.262.716 | 26.733.389.392| 1.026.441.571| 2.753.969.173| 109.179.627.167 |
 | Đông Nam Bộ   | 104,784.917.685  | 233,448.619   | 2,485.006.743 | 5,490.859.663     | 1,481.077.682       | 116.750.438       | 7.878.503.667  | 15.110.980.529| 589.810.980  | 1.448.148.541| 58.642.193.852  |
+
+# 3.Calculate Summary Report
