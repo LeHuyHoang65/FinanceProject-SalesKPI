@@ -6,13 +6,16 @@
 
 <p align="center">
   <img width="940" height="465" alt="FLOW" src="https://github.com/user-attachments/assets/570dde93-86e0-4569-8961-7afa44947eab" />
-</p>
+</p>  
 
 As illustrated in the diagram above, this is the process I will follow to produce the analysis results. Here, I will create a Summary Report using two datasets: `fact_kpi_month_dataraw` and `fact_txn_month_dataraw`. By generating the Summary Report, we can load the data into Power BI to produce comprehensive dashboards on revenue and expenses.  
-To calculate the metrics in the Summary Report, specific business knowledge is required. Below are two files that will support you in understanding the necessary business knowledge: `huongdan_data` and `param_dim_data`.  
-In this file, I will focus on calculating the `Summary Report`. The `KPI ASM report` file will follow a similar process, and I will include the code for it in the repository for reference.  
 
+To calculate the metrics in the Summary Report, specific business knowledge is required. Below are two files that will support you in understanding the necessary business knowledge: `huongdan_data` and `param_dim_data`.  
+
+In this file, I will focus on calculating the `Summary Report`. The `KPI ASM report` file will follow a similar process, and I will include the code for it in the repository for reference.  
+<p align="center">
 <img width="1249" height="682" alt="summaryt2" src="https://github.com/user-attachments/assets/d387b5f7-ca3f-46d1-a8f9-293479d50759" />  
+</p>
 
 # 1.Metrics
 The Summary Report includes numerous metrics. Some of these are aggregate metrics derived from other metrics. Therefore, I will categorize them into two levels:  
@@ -58,3 +61,18 @@ The Summary Report includes numerous metrics. Some of these are aggregate metric
   `loi_nhuan_truoc_thue / so_luong_nhansu`
 
 # 2.Calculate REPORT1
+Below is a diagram illustrating the calculation process in step 1. 
+<p align="center">
+<img width="934" height="277" alt="report1" src="https://github.com/user-attachments/assets/7d3330d6-9ec8-454e-ac01-4cec23bad52e" />
+</p>  
+
+After importing the two data files, `fact_kpi_month_dataraw` and `fact_txn_month_dataraw`, along with the two guide files `huongdan_data`, we will sequentially calculate the metrics at level 1. Since this project requires the calculation of numerous metrics, to facilitate easy modification and maintenance of the code, I will use functions and procedures.  
+
+After calculating the metrics at level 1, I will create a function to store all these metrics in temporary tables in PostgreSQL. Finally, I will use a procedure to consolidate these temporary tables into a single table `report1` that contains all the level 1 metrics.  
+
+Let's canculate Metrics level 1 😎. Here is a diagram illustrating the calculation process for the level 1 metrics.  
+<p align="center">
+<img width="783" height="442" alt="metrics_lv1" src="https://github.com/user-attachments/assets/8d1fcafd-e292-4497-ac4c-d69cacdf1cd9" />
+</p>  
+
+I will calculate the first metric: lai_trong_han.
