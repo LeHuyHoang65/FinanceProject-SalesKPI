@@ -63,7 +63,7 @@ The Summary Report includes numerous metrics. Some of these are aggregate metric
 # 2.Calculate REPORT
 Below is a diagram illustrating the calculation process in step 1. 
 <p align="center">
-<img width="934" height="277" alt="report1" src="https://github.com/user-attachments/assets/7d3330d6-9ec8-454e-ac01-4cec23bad52e" />
+	<img width="1672" height="493" alt="Screenshot 2025-10-24 184142" src="https://github.com/user-attachments/assets/b7f3a65e-d36f-4cac-84cb-a9df40d50939" />
 </p>  
 
 After importing the two data files, `fact_kpi_month_dataraw` and `fact_txn_month_dataraw`, along with the two guide files `huongdan_data`, we will sequentially calculate the metrics at level 1. Since this project requires the calculation of numerous metrics, to facilitate easy modification and maintenance of the code, I will use functions and procedures.  
