@@ -1,7 +1,7 @@
 # FinanceProject-SalesKPI
 Dataset here: [Download](https://drive.google.com/drive/folders/142RTfUw6BbQylh7iGDiSwnQ2QGETCXvj?usp=sharing)  
-Please see this Coding file here :   
-Final Result here : [Coding Details](https://github.com/LeHuyHoang65/FinanceProject-SalesKPI/blob/main/Coding_SummayReport.md)
+Please see this Coding file here : [Coding Details](https://github.com/LeHuyHoang65/FinanceProject-SalesKPI/blob/main/Coding_SummayReport.md)  
+Final Result here :   
 
 # Table of Contents
 1.[Introduction](#1introduction)  
