@@ -463,3 +463,228 @@ begin
 end ; 
 $$ language plpgsql ; 
 ~~~
+
+Finally, I will use a procedure to calculate aggregate metrics and build the summary report from the temporary tables created earlier.  
+
+~~~sql
+CREATE OR REPLACE PROCEDURE gen_final_report_to_asm(
+    year_pram int,
+    month_pram int
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    -- Bổ sung các biến nếu cần
+BEGIN
+    -- ---------------------
+    -- THÔNG TIN NGƯỜI TẠO
+    -- ---------------------
+    -- Tên người tạo: Lê Huy Hoàng
+    -- Ngày tạo: 2025-Sep-05
+    -- Mục đích: Tạo báo cáo cuối cùng bằng cách tính toán các chỉ số tổng hợp từ báo cáo tạm thời, bao gồm lợi nhuận trước thuế, CIR, Margin, v.v.
+
+    -- ---------------------
+    -- THÔNG TIN NGƯỜI CẬP NHẬT
+    -- ---------------------
+    -- Tên người cập nhật: 
+    -- Ngày cập nhật: 
+    -- Mục đích cập nhật: 
+
+    -- ---------------------
+    -- SUMMARY LUỒNG XỬ LÝ
+    -- ---------------------
+    -- Bước 1: Gọi hàm cp để tạo các bảng tạm thời cho chi phí vốn CCTG và TT2.
+    -- Bước 2: Xóa bảng final_report nếu tồn tại.
+    -- Bước 3: Tạo bảng final_report mới với cấu trúc chỉ định.
+    -- Bước 4: Insert dữ liệu tính toán từ summary_report vào final_report, sử dụng các CTE để tính toán các chỉ số tổng hợp.
+    -- Bước 5: Xóa các bảng tạm thời sau khi sử dụng.
+    -- Bước 6: Xử lý ngoại lệ và ghi log (nếu cần).
+
+    -- ---------------------
+    -- CHI TIẾT CÁC BƯỚC
+    -- ---------------------
+	
+	-- Bước 1: Gọi procedure generate_report để tạo bảng report tạm thời.
+    CALL generate_report(year_pram, month_pram);
+    
+    -- Bước 2: Gọi hàm cp để tạo các bảng tạm thời cho chi phí vốn CCTG và TT2.
+    PERFORM cp(year_pram, month_pram); 
+	
+    -- Bước 3: Xóa bảng final_report_to_asm nếu tồn tại.
+    DROP TABLE IF EXISTS final_report_to_asm; 
+
+    -- Bước 4: Tạo bảng final_report_to_asm mới với cấu trúc chỉ định, thêm year và month.
+	create table final_report_to_asm (
+		year INT,
+        month INT,
+		tenkhuvuc varchar , 
+		"1.Lợi nhuận trước thuế" int8  ,
+		 "Thu nhập từ hoạt động thẻ"  int8 ,
+		 "Lãi trong hạn" int8 ,
+		 "Lãi quá hạn" int8 ,
+		 "Phí Bảo hiểm" int8 ,
+		 "Phí tăng hạn mức" int8 ,
+		"Phí thanh toán chậm, thu từ ngoại bảng, khác…" int8 ,
+		"Chi phí thuần KDV"  int8 ,
+		"CP vốn TT 2" int8 ,
+		 "CP vốn CCTG" int8 ,
+		 "Chi phí thuần hoạt động khác"  int8 ,
+		"DT Kinh doanh" int8 ,
+		 "CP hoa hồng"  int8 ,
+		 "CP thuần KD khác" int8 ,
+		"Tổng thu nhập hoạt động" int8 ,
+		"Tổng chi phí hoạt động" int8 ,
+		"CP nhân viên" int8 ,
+		"CP quản lý" int8 ,
+		"CP tài sản" int8 ,
+		"Chi phí dự phòng" int8 ,
+		"2. Số lượng nhân sự ( Sale Manager )" int8 ,
+		"CIR (%)" numeric ,
+		"Margin (%)" numeric ,
+		"Hiệu suất trên/vốn (%)" numeric ,
+		"Hiệu suất BQ/ Nhân sự"numeric 
+	) ;
+
+    -- Bước 5: Insert dữ liệu tính toán từ summary_report vào final_report, sử dụng các CTE để tính toán các chỉ số tổng hợp.
+	INSERT INTO final_report_to_asm (
+        year, month, tenkhuvuc,
+        "1.Lợi nhuận trước thuế",
+        "Thu nhập từ hoạt động thẻ",
+        "Lãi trong hạn",
+        "Lãi quá hạn",
+        "Phí Bảo hiểm",
+        "Phí tăng hạn mức",
+        "Phí thanh toán chậm, thu từ ngoại bảng, khác…",
+        "Chi phí thuần KDV",
+        "CP vốn TT 2",
+        "CP vốn CCTG",
+        "Chi phí thuần hoạt động khác",
+        "DT Kinh doanh",
+        "CP hoa hồng",
+        "CP thuần KD khác",
+        "Tổng thu nhập hoạt động",
+        "Tổng chi phí hoạt động",
+        "CP nhân viên",
+        "CP quản lý",
+        "CP tài sản",
+        "Chi phí dự phòng",
+        "2. Số lượng nhân sự ( Sale Manager )",
+        "CIR (%)",
+        "Margin (%)",
+        "Hiệu suất trên/vốn (%)",
+        "Hiệu suất BQ/ Nhân sự" 
+	)
+	with cte1 as (
+		select 
+			s1.year,
+	        s1.month,
+			s1.tenkhuvuc , 
+			lai_trong_han + lai_qua_han + phi_bao_hiem + phi_tang_han_muc + phi_thanh_toan_cham as thu_nhap_tu_hd_the , 
+			lai_trong_han , 
+			lai_qua_han ,
+			phi_bao_hiem ,
+			phi_tang_han_muc ,
+			phi_thanh_toan_cham ,
+			cp_von_tt2 + cp_von_CCTG as chi_phi_thuan_KDV , 
+			cp_von_tt2 ,
+			cp_von_cctg ,
+			doanhthu_kinhdoanh + cp_hoahong + cp_thuankdkhac as chi_phi_thuan_hd_khac , 
+			doanhthu_kinhdoanh , 
+			cp_hoahong , 
+			cp_thuankdkhac ,
+			cp_nhanvien + cp_quanly + cp_taisan as tong_chi_phi_hoat_dong , 
+			cp_nhanvien , 
+			cp_quanly , 
+			cp_taisan , 
+			cp_duphong ,
+			s2.sl_nhansu 
+		from summary_report s1 
+		inner join -- thêm metric số lượng nhân sự 
+			(select 	
+				p.area_name , 
+				count(p.sale_name) as sl_nhansu
+			from kpi_asm_data p 
+			group by 1 ) s2 
+		on s1.tenkhuvuc = s2.area_name 
+		WHERE s1.tenkhuvuc != 'Hội Sở'  -- Loại bỏ Hội Sở
+            AND s1.year = year_pram
+            AND s1.month = month_pram  -- Filter theo năm-tháng
+	), cte2 as (
+	select 
+		* ,
+		thu_nhap_tu_hd_the + chi_phi_thuan_KDV + chi_phi_thuan_hd_khac as tong_thu_nhap_hd
+	from cte1 ) 
+	
+	, cte3 as (
+	select 
+		* , 
+		tong_thu_nhap_hd+ tong_chi_phi_hoat_dong+cp_duphong as loi_nhuan_truoc_thue ,
+		ROUND((tong_chi_phi_hoat_dong * -1.0 / NULLIF(tong_thu_nhap_hd, 0)) * 100, 2) AS CIR,
+        ROUND(((tong_thu_nhap_hd + tong_chi_phi_hoat_dong + cp_duphong) / NULLIF((thu_nhap_tu_hd_the + doanhthu_kinhdoanh), 0)) * 100, 2) AS Margin,
+        ROUND(((tong_thu_nhap_hd + tong_chi_phi_hoat_dong + cp_duphong) * -1.0 / NULLIF(chi_phi_thuan_KDV, 0)) * 100, 2) AS hieusuat_von,
+        ROUND((tong_thu_nhap_hd + tong_chi_phi_hoat_dong + cp_duphong) / NULLIF(sl_nhansu, 0), 2) AS hieusuat_bq 
+	from cte2 ) 
+	
+	select 
+		year,
+		month,
+		tenkhuvuc ,
+		loi_nhuan_truoc_thue , 
+		thu_nhap_tu_hd_the ,
+		lai_trong_han ,
+		lai_qua_han ,
+		phi_bao_hiem , 
+		phi_tang_han_muc ,
+		phi_thanh_toan_cham ,
+		chi_phi_thuan_KDV  ,
+		cp_von_tt2 ,
+		cp_von_cctg ,
+		chi_phi_thuan_hd_khac ,
+		doanhthu_kinhdoanh ,
+		cp_hoahong ,
+		cp_thuankdkhac ,
+		tong_thu_nhap_hd ,
+		tong_chi_phi_hoat_dong ,
+		cp_nhanvien ,
+		cp_quanly ,
+		cp_taisan , 
+		cp_duphong ,
+		sl_nhansu , 
+		cir , 
+		margin , 
+		hieusuat_von , 
+		hieusuat_bq 
+	from cte3 
+	order by month asc,
+		case 
+			when tenkhuvuc = 'Đông Bắc Bộ' then 1 
+			when tenkhuvuc = 'Tây Bắc Bộ'  then 2
+			when tenkhuvuc = 'Đồng Bằng Sông Hồng' then 3 
+			when tenkhuvuc = 'Bắc Trung Bộ' then 4
+			when tenkhuvuc = 'Nam Trung Bộ' then 5 
+			when tenkhuvuc = 'Tây Nam Bộ' then 6 
+			WHEN tenkhuvuc = 'Đông Nam Bộ' THEN 7
+            ELSE 8  -- Để tránh lỗi nếu có khu vực khác 
+		end ; 
+	
+    -- Bước 6: Xóa các bảng tạm thời sau khi sử dụng.
+	drop table if exists cp_cctg ;
+	drop table if exists cp_tt2 ;
+
+    -- Bước 7: Xử lý ngoại lệ và ghi log (nếu cần).
+    EXCEPTION
+        WHEN others THEN
+            -- Xử lý ngoại lệ ở đây
+            -- Có thể ghi log hoặc xử lý các tình huống đặc biệt
+            RAISE; -- Tùy chọn để re-raise ngoại lệ
+END;
+$$ ;
+~~~
+
+and result after call procedure  
+
+~~~sql
+call gen_final_report_to_asm (2023, 2) ; 
+select * from final_report_to_asm
+~~~
+
