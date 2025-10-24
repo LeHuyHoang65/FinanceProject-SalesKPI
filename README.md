@@ -39,4 +39,4 @@ Dataset
 The project is processed and analyzed according to the flow below
 <img width="940" height="465" alt="FLOW" src="https://github.com/user-attachments/assets/86313bde-273c-4ad4-af17-2e5c72e63431" />
 Processing this project requires combining various business knowledge areas. I will explain in more detail below⬇  
-Coding Details Here
+[Coding Details Here](https://github.com/LeHuyHoang65/FinanceProject-SalesKPI/blob/main/Coding_SummayReport.md)
