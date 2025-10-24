@@ -346,3 +346,120 @@ from report ;
 | Đông Nam Bộ   | 104,784.917.685  | 233,448.619   | 2,485.006.743 | 5,490.859.663     | 1,481.077.682       | 116.750.438       | 7.878.503.667  | 15.110.980.529| 589.810.980  | 1.448.148.541| 58.642.193.852  |
 
 # 3.Calculate Summary Report
+Below is a diagram illustrating the calculation process in step 2.  
+<p align="center">
+	<img width="926" height="422" alt="Screenshot 2025-10-24 185519" src="https://github.com/user-attachments/assets/12e1c4b2-0824-4d22-9159-b4ecfc9f2b67" />
+</p>  
+
+After constructing `Report`, I will utilize a function to create temporary tables for calculating level 2 metrics based on the level 1 metrics data from `Report`. Subsequently, I will employ a procedure to compute aggregate metrics and generate the summary report.  
+
+Now, I will create a function to calculate the two metrics, cp_von_tt2 and cp_von_cctg, from `Report`.  
+
+~~~sql
+create or replace function cp(year_pram int, month_pram int) 
+returns void 
+as 
+$$ 
+begin 
+	DROP TABLE IF EXISTS cp_cctg;
+    DROP TABLE IF EXISTS cp_tt2;
+	
+	-- Tạo bảng tạm tính cp_cctg 
+	create temp table cp_cctg as 
+	with head as (
+	select 
+		SUM(amount)::NUMERIC AS total_head 
+	from fact_txn_month ftm
+	where extract(year from transaction_date) = year_pram 
+		and extract(month from transaction_date) <= month_pram
+		and analysis_code like 'HEAD%'
+		and account_code  = '803000000001') 
+		
+	, step1 as (
+	select 
+		tenkhuvuc , 
+		(lai_trong_han + lai_qua_han + phi_bao_hiem + phi_tang_han_muc + phi_thanh_toan_cham)::NUMERIC AS thu_nhap_tu_hd_the, 
+		SUM(doanhthu_kinhdoanh) OVER()::NUMERIC AS total_dt_kinhdoanh
+	from report )
+	
+	, step2 as (
+	select 
+		tenkhuvuc , 
+		thu_nhap_tu_hd_the  , 
+		SUM(thu_nhap_tu_hd_the) OVER()::NUMERIC AS total_thunhap_hdthe, 
+		total_dt_kinhdoanh 
+	from step1 ) 
+	
+	select 
+		tenkhuvuc , 
+		CASE 
+			WHEN total_thunhap_hdthe + total_dt_kinhdoanh = 0 THEN 0::NUMERIC
+			ELSE ((SELECT total_head FROM head) * thu_nhap_tu_hd_the) / (total_thunhap_hdthe + total_dt_kinhdoanh)
+		END AS cp_von_CCTG
+	from step2 ;
+
+	--------------------------------
+	-- Bảng tạm tính cp_tt2 
+	create temp table cp_tt2 as 
+	with head as (
+	select 
+		SUM(amount)::NUMERIC AS total_head 
+	from fact_txn_month ftm
+	where extract(year from transaction_date) = year_pram 
+		and extract(month from transaction_date) <= month_pram
+		and analysis_code like 'HEAD%'
+		and account_code  in (801000000001,802000000001))
+	, step1 as (
+	select 
+		tenkhuvuc , 
+		(lai_trong_han + lai_qua_han + phi_bao_hiem + phi_tang_han_muc + phi_thanh_toan_cham)::NUMERIC AS thu_nhap_tu_hd_the, 
+		SUM(doanhthu_kinhdoanh) OVER()::NUMERIC AS total_dt_kinhdoanh
+	from report ) 
+	, step2 as (
+	select 
+		tenkhuvuc , 
+		thu_nhap_tu_hd_the  , 
+		SUM(thu_nhap_tu_hd_the) OVER()::NUMERIC AS total_thunhap_hdthe, 
+		total_dt_kinhdoanh 
+	from step1 ) 
+	select 
+		tenkhuvuc , 
+		CASE 
+			WHEN total_thunhap_hdthe + total_dt_kinhdoanh = 0 THEN 0::NUMERIC
+			ELSE ((SELECT total_head FROM head) * thu_nhap_tu_hd_the) / (total_thunhap_hdthe + total_dt_kinhdoanh)
+		END AS cp_von_tt2
+	from step2 ;
+
+	-- Insert vào bảng vật lý summary_report
+    INSERT INTO summary_report (
+        year, month, tenkhuvuc, lai_trong_han, lai_qua_han, phi_bao_hiem,
+        phi_tang_han_muc, phi_thanh_toan_cham, doanhthu_kinhdoanh, cp_hoahong,
+        cp_thuankdkhac, cp_nhanvien, cp_quanly, cp_taisan, cp_duphong,
+        cp_von_CCTG, cp_von_tt2
+    )
+    SELECT 
+        year_pram as year,
+        month_pram as month,
+        r.tenkhuvuc,
+        r.lai_trong_han,
+        r.lai_qua_han,
+        r.phi_bao_hiem,
+        r.phi_tang_han_muc,
+        r.phi_thanh_toan_cham,
+        r.doanhthu_kinhdoanh,
+        r.cp_hoahong,
+        r.cp_thuankdkhac,
+        r.cp_nhanvien,
+        r.cp_quanly,
+        r.cp_taisan,
+        r.cp_duphong,
+        c.cp_von_CCTG,
+        t.cp_von_tt2
+    FROM report r 
+    INNER JOIN cp_cctg c ON r.tenkhuvuc = c.tenkhuvuc 
+    INNER JOIN cp_tt2 t ON r.tenkhuvuc = t.tenkhuvuc
+    ON CONFLICT (year, month, tenkhuvuc) DO NOTHING;
+	
+end ; 
+$$ language plpgsql ; 
+~~~
