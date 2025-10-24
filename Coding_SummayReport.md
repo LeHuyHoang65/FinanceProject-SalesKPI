@@ -335,7 +335,7 @@ select *
 from report1 ;
 ~~~
 
-| Khu Vực       | lai_trong_han    | lai_qua_han   | piti_bao_hiem | piti_tang_han_muc | piti_thanh_toan_cham | doanhthu_kinhdoanh | cp_hoahong    | cp_nhanvien   | cp_quanly    | cp_taisan    | cp_duphong     |
+| Khu Vực       | lai_trong_han    | lai_qua_han   | phi_bao_hiem | phi_tang_han_muc | phi_thanh_toan_cham | doanhthu_kinhdoanh | cp_hoahong    | cp_nhanvien   | cp_quanly    | cp_taisan    | cp_duphong     |
 |---------------|------------------|---------------|---------------|-------------------|---------------------|-------------------|---------------|---------------|--------------|--------------|----------------|
 | Đông Bắc      | 71,210.401.716   | 64,191.654    | 2,248.781.647 | 3,625.425.756     | 634.722.991         | 54.515.640        | 54.112.847.483 | 9.172.655.789 | 356.162.358  | 894.738.097  | 40.615.828.951  |
 | Tây Bắc Bộ    | 40,355.250.939   | 55,514.989    | 574.178.105   | 2,113.532.018     | 399.710.741         | 46.315.116        | 3.240.656.297  | 6.115.861.629 | 240.733.533  | 598.318.832  | 23.318.975.760  |
