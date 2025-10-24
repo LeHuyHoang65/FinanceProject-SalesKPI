@@ -68,7 +68,7 @@ Below is a diagram illustrating the calculation process in step 1.
 
 After importing the two data files, `fact_kpi_month_dataraw` and `fact_txn_month_dataraw`, along with the two guide files `huongdan_data`, we will sequentially calculate the metrics at level 1. Since this project requires the calculation of numerous metrics, to facilitate easy modification and maintenance of the code, I will use functions and procedures.  
 
-After calculating the metrics at level 1, I will create a function to store all these metrics in temporary tables in PostgreSQL. Finally, I will use a procedure to consolidate these temporary tables into a single table `report1` that contains all the level 1 metrics.  
+After calculating the metrics at level 1, I will create a function to store all these metrics in temporary tables in PostgreSQL. Finally, I will use a procedure to consolidate these temporary tables into a single table `report` that contains all the level 1 metrics.  
 
 Let's canculate Metrics level 1 😎. Here is a diagram illustrating the calculation process for the level 1 metrics.  
 <p align="center">
