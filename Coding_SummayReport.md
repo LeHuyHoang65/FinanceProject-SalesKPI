@@ -332,7 +332,7 @@ When calling the procedure and passing a specific time period, such as (2023, 2)
 ~~~sql
 call generate_report(2023, 2) ;
 select *
-from report1 ;
+from report ;
 ~~~
 
 | Khu Vực       | lai_trong_han    | lai_qua_han   | phi_bao_hiem | phi_tang_han_muc | phi_thanh_toan_cham | doanhthu_kinhdoanh | cp_hoahong    | cp_nhanvien   | cp_quanly    | cp_taisan    | cp_duphong     |
