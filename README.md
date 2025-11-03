@@ -14,7 +14,7 @@ This project utilizes data that closely mirrors the financial data of real Vietn
 
 ## 2.Result
 A summary dashboard reporting monthly results in Power BI
-<img width="1249" height="682" alt="summaryt2" src="https://github.com/user-attachments/assets/754811e1-eb4e-42ef-b35c-8e4652c88dee" />
+<img width="1158" height="662" alt="baocaotonghopthang2" src="https://github.com/user-attachments/assets/c3e37591-3113-4d6c-99fb-18556202136c" />
 
 Detailed dashboards on overview , revenue and expenses
 <img width="1285" height="721" alt="tongquan" src="https://github.com/user-attachments/assets/d5eaee2b-5329-4bd3-99cc-6dd42ba7792b" />
