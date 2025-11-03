@@ -10,7 +10,9 @@ Final Result here : [Dashboard](https://github.com/LeHuyHoang65/FinanceProject-S
 4.[Detailed Approach](#4detailed-approach)  
 
 ## 1.Introduction
-This project utilizes data that closely mirrors the financial data of real Vietnamese enterprises. The goal is to develop financial metrics for companies operating in the financial sector. From these metrics, we aim to create reports and dashboards that provide a comprehensive and detailed overview of the company's revenue and expenses on a monthly basis. Additionally, the project includes reports on the performance of the sales team.
+This project utilizes data that closely mirrors the financial data of real Vietnamese enterprises. The goal is to develop financial metrics for companies operating in the financial sector. From these metrics, we aim to create reports and dashboards that provide a comprehensive and detailed overview of the company's revenue and expenses on a monthly basis. Additionally, the project includes reports on the performance of the sales team.  
+The `param_dim_data.xlsx` file contains the parameters used in the project: [param description](https://docs.google.com/spreadsheets/d/1aQEic6zP9-3FJJZLJT7Vx4NrhtEm8KMV/edit?gid=1794641350#gid=1794641350)  
+The economic operations are described in detail in the `huongdan_data.xlsx` file, including the supplying unit, source, description, allocation rules, and the calculation method: [business description](https://docs.google.com/spreadsheets/d/1Xh0Dog_Eguw795MimXZpgZQsqwSOHilk/edit?gid=205491584#gid=205491584)
 
 ## 2.Result
 A summary dashboard reporting monthly results in Power BI
