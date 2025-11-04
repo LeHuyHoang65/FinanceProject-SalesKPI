@@ -25,7 +25,6 @@ Detailed dashboards on overview , revenue and expenses
 
 <img width="1287" height="718" alt="chiphi" src="https://github.com/user-attachments/assets/d5f23372-9d89-4130-a259-6dc27962aa28" />  
 
-
 Dashboards reporting the performance of the sales team
 <img width="1282" height="719" alt="baocaoxhassmt2" src="https://github.com/user-attachments/assets/4e8168a6-abdf-41e6-a8ee-6cc9836caedb" />
 
