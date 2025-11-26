@@ -14,7 +14,7 @@ To calculate the metrics in the Summary Report, specific business knowledge is r
 
 In this file, I will focus on calculating the `Summary Report`. The `KPI ASM report` file will follow a similar process, and I will include the code for it in the repository for reference.  
 <p align="center">
-<img width="1249" height="682" alt="summaryt2" src="https://github.com/user-attachments/assets/d387b5f7-ca3f-46d1-a8f9-293479d50759" />  
+  <img width="1158" height="662" alt="baocaotonghopthang2" src="https://github.com/user-attachments/assets/5572ef3a-4258-4bee-9007-e9754b08feb7" />
 </p>
 
 # 1.Metrics
