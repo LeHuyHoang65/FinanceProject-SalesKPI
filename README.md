@@ -30,7 +30,7 @@ Detailed dashboards on overview , revenue and expenses
 ⮕Outstanding efficiency, stable structure, and high-profit support. However, costs are dependent on provisional funds; the high CIR in the Northern region could drive up the average if expanded; a slight positive bar in some categories (e.g., personnel) could "balloon" with recruitment.<br>
 
 Dashboards reporting the performance of the sales team
-<img width="1282" height="719" alt="baocaoxhassmt2" src="https://github.com/user-attachments/assets/4e8168a6-abdf-41e6-a8ee-6cc9836caedb" />
+<img width="1285" height="722" alt="asmt2" src="https://github.com/user-attachments/assets/884f6227-7ddc-4342-9f6d-09fc0f9db489" />
 
 ## 3.Tool & Dataset
 Tool
