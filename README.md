@@ -17,13 +17,17 @@ The economic operations are described in detail in the `huongdan_data.xlsx` file
 ## 2.Result
 A summary dashboard reporting monthly results in Power BI
 <img width="1158" height="662" alt="baocaotonghopthang2" src="https://github.com/user-attachments/assets/c3e37591-3113-4d6c-99fb-18556202136c" />
-
+⮕Total revenue is high, but profit fluctuates significantly across regions.  
+  
 Detailed dashboards on overview , revenue and expenses
 <img width="1285" height="721" alt="tongquan" src="https://github.com/user-attachments/assets/d5eaee2b-5329-4bd3-99cc-6dd42ba7792b" />  
-
+⮕While showing booming growth, high cost-efficiency, and sustainable profit, the company depends heavily on the Southern region for revenue (70%) and faces a burnout risk due to its fixed staff size.
+  
 <img width="1283" height="720" alt="doanhthu" src="https://github.com/user-attachments/assets/334fffa1-2117-4493-894b-fae31449ff47" />  
-
+⮕Despite achieving outstanding growth, a stable structure, and enhanced performance, the company faces a concentration risk as 39% of its total revenue relies on the Southwest region. A potential economic downturn in the South could result in a loss of 40% of total revenue.<br>
+  
 <img width="1287" height="718" alt="chiphi" src="https://github.com/user-attachments/assets/d5f23372-9d89-4130-a259-6dc27962aa28" />  
+⮕Outstanding efficiency, stable structure, and high-profit support. However, costs are dependent on provisional funds; the high CIR in the Northern region could drive up the average if expanded; a slight positive bar in some categories (e.g., personnel) could "balloon" with recruitment.<br>
 
 Dashboards reporting the performance of the sales team
 <img width="1282" height="719" alt="baocaoxhassmt2" src="https://github.com/user-attachments/assets/4e8168a6-abdf-41e6-a8ee-6cc9836caedb" />
